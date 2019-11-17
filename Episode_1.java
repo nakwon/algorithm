@@ -117,5 +117,13 @@ class Player {
         public void setGateway(boolean isGateway) {
             this.isGateway = isGateway;
         }
+
+        public void cut(int id) {
+            for(Node node : neighborhoods) {
+                if (node.id == id) {
+                    neighborhoods.remove(node);
+                }
+            }
+        }
     }
 }
