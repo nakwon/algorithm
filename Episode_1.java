@@ -87,14 +87,14 @@ class Player {
             check.remove(0);
             
             for (int i = 0; i < nodes[position].neighborhoods.size(); i++) {
-                if (!nodes[position].neighborhoods.get(i).checked) {
-                    check.add(nodes[position].neighborhoods.get(i).id);
-                    nodes[position].neighborhoods.get(i).checked = true;
+                Node neighborhood = nodes[position].neighborhoods.get(i);
+                if (!neighborhood.checked) {
+                    check.add(neighborhood.id);
+                    neighborhood.checked = true;
                     
-                    if (nodes[position].neighborhoods.get(i).isGateway) {
-                        return new int[] {nodes[position].neighborhoods.get(i).id, position};
+                    if (neighborhood.isGateway) {
+                        return new int[] {neighborhood.id, position};
                     }
-                    
                 }
             }
         }
