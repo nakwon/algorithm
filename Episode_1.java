@@ -51,19 +51,10 @@ class Player {
 
             // Example: 0 1 are the indices of the nodes you wish to sever the link between
             int[] find = bfs(SI, nodes);
-            
-            cut(find[0], find[1], nodes);
-            cut(find[1], find[0], nodes);
-            
+            nodes[find[0]].cut(find[1]);
+            nodes[find[1]].cut(find[0]);
+        
             System.out.println(find[0] + " " + find[1]);
-        }
-    }
-    
-    private void cut(int from, int to, Node[] nodes) {
-        for (int i = 0; i < nodes[from].neighborhoods.size(); i++) {
-            if (nodes[from].neighborhoods.get(i).id == to) {
-                nodes[from].neighborhoods.remove(i);
-            }
         }
     }
     
@@ -119,9 +110,10 @@ class Player {
         }
 
         public void cut(int id) {
-            for(Node node : neighborhoods) {
-                if (node.id == id) {
-                    neighborhoods.remove(node);
+            for (int i = 0; i < neighborhoods.size(); i++) {
+                if (neighborhoods.get(i).id == id) {
+                    neighborhoods.remove(i);
+                    return;
                 }
             }
         }
